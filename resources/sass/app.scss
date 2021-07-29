@@ -1,0 +1,75 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.toast-success {
+    background-color: #51a351!important;
+}
+
+.toast-error {
+    background-color: #bd362f!important;
+}
+
+.toast-warning {
+    background-color: #f89406!important;
+}
+
+.toast-info {
+    background-color: #2f96b4!important;
+}
+
+.form-control:focus {
+    color: #495057!important;
+    background-color: #fff!important;
+    border-color: #80bdff!important;
+    outline: 0!important;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 0%)!important;
+}
+
+.breadcrumb-custom {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .1rem;
+    list-style: none;
+    background-color: rgba(233,236,239,.03137254901960784);
+    border-radius: .25rem;
+}
+
+.btn.btn-flat {
+    border-radius: 0;
+    border-width: 1px;
+    box-shadow: none;
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.2rem;
+    position: relative
+}
+.card-header > .card-tools {
+    float: right;
+    margin-right: -.625rem;
+}
+
+.card-title-custom {
+    float: left;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.table td, .table th {
+    padding: .35rem!important;
+}
+
+.shadow-md {
+    box-shadow: 0 .125rem .45rem rgba(0,0,0,.175)!important;
+}
+
+
