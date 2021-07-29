@@ -8,7 +8,7 @@
                 <div class="card-header text-center">Introducir credenciales</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" autocomplete="false">
+                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
                         @csrf
 
                         <div class="form-group">

@@ -17,3 +17,10 @@ Route::get('/', 'HomeController@index');
 Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function() {
+
+	Route::resource('categorias','Administrar\CategoriaController');
+    Route::resource('productos','Administrar\ProductoController');
+
+});
