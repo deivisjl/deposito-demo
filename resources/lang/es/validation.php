@@ -80,7 +80,7 @@ return [
 	],
 	'string'                => 'El campo :attribute debe ser una cadena.',
 	'timezone'              => 'El campo :attribute debe ser una zona válida.',
-	'unique'                => 'El campo :attribute ya ha sido utilizado.',
+	'unique'                => 'El campo :attribute ya existe en el sistema.',
 	'url'                   => 'El formato de :attribute es inválido.',
 	'uploaded'              => 'El campo :attribute no ha podido ser cargado.',
 

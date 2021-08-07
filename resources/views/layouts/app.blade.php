@@ -32,12 +32,25 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categorias.index') }}">Categorías</a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Administrar <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <li><a class="dropdown-item" href="{{ route('categorias.index') }}">Categorías</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('productos.index') }}">Productos</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('proveedores.index') }}">Proveedores</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('comprobantes.index') }}">Comprobantes</a></li>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
-                        </li>
+                        {{-- <li class="nav-item">
+                            <li><a class="dropdown-item" href="{{ route('categorias.index') }}">Categorías</a></li>
+                              <li><a class="dropdown-item" href="{{ route('productos.index') }}">Productos</a></li>
+                        </li> --}}
                         @endguest
                     </ul>
 

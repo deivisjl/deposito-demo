@@ -22,5 +22,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::resource('categorias','Administrar\CategoriaController');
     Route::resource('productos','Administrar\ProductoController');
+    Route::resource('proveedores','Administrar\ProveedorController');
+    Route::resource('comprobantes','Administrar\ComprobanteController');
 
 });
