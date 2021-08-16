@@ -46,7 +46,8 @@ class ProductoController extends Controller
             "categoria" => "required|numeric",
             "maximo" => "required|numeric|min:0",
             "minimo" => "required|numeric|min:0",
-            "descripcion" => 'nullable'
+            "descripcion" => 'nullable',
+            "porcentaje_ganancia" => 'required|numeric|min:1|max:100'
         ];
 
         $this->validate($request, $rules);
@@ -57,6 +58,7 @@ class ProductoController extends Controller
         $producto->stock_maximo = $request->maximo;
         $producto->stock_minimo = $request->minimo;
         $producto->descripcion = $request->descripcion;
+        $producto->porcentaje_ganancia = $request->porcentaje_ganancia;
         $producto->save();
 
         return redirect('/productos')->with(['mensaje' => 'Registro exitoso']);
@@ -129,6 +131,7 @@ class ProductoController extends Controller
             "categoria" => "required|numeric",
             "maximo" => "required|numeric|min:0",
             "minimo" => "required|numeric|min:0",
+            "porcentaje_ganancia" => 'required|numeric|min:1|max:100',
             "descripcion" => 'nullable'
         ];
 
@@ -139,6 +142,7 @@ class ProductoController extends Controller
         $producto->stock_maximo = $request->maximo;
         $producto->stock_minimo = $request->minimo;
         $producto->descripcion = $request->descripcion;
+        $producto->porcentaje_ganancia = $request->porcentaje_ganancia;
         $producto->save();
 
         return redirect('/productos')->with(['mensaje' => 'Actualización exitosa']);

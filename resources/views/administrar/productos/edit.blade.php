@@ -50,6 +50,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Porcentaje de ganancia <small>(sin signos)</small></label>
+                                    <input type="text" class="form-control @error('porcentaje_ganancia') is-invalid @enderror" name="porcentaje_ganancia" value="{{ $producto->porcentaje_ganancia }}">
+                                    @error('porcentaje_ganancia')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="">Stock máximo</label>
                                     <input type="text" class="form-control @error('maximo') is-invalid @enderror" name="maximo" value="{{ $producto->stock_maximo }}">
                                     @error('maximo')

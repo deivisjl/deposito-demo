@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableProducto extends Migration
+class CreateRolTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateTableProducto extends Migration
      */
     public function up()
     {
-        Schema::create('producto', function (Blueprint $table) {
+        Schema::create('rol', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->text('descripcion')->nullable();
-            $table->integer('categoria_id')->unsigned();
-            $table->decimal('porcentaje_ganancia');
-            $table->integer('stock_minimo');
-            $table->integer('stock_maximo');
-            $table->foreign('categoria_id')->references('id')->on('categoria');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ class CreateTableProducto extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('producto');
+        Schema::dropIfExists('rol');
     }
 }

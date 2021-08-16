@@ -44,6 +44,7 @@
                                     <li><a class="dropdown-item" href="{{ route('proveedores.index') }}">Proveedores</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{{ route('comprobantes.index') }}">Comprobantes</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('tipo-pago.index') }}">Tipos de pagos</a></li>
                                 </li>
                             </ul>
                         </li>
