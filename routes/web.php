@@ -26,4 +26,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('comprobantes','Administrar\ComprobanteController');
     Route::resource('tipo-pago','Administrar\TipoPagoController');
 
+    Route::get('inventario','Inventario\InventarioController@index');
+    Route::get('inventario-listar/{request}','Inventario\InventarioController@show');
+
 });

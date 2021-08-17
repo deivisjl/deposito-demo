@@ -8,5 +8,17 @@ class Producto extends Model
 {
     protected $table = 'producto';
 
-    protected $fillable = ['id','nombre','descripcion','categoria_id','stock_minimo','stock_maximo','porcentaje_ganancia'];
+    protected $casts = [
+        'id' => 'string'
+      ];
+
+    protected $fillable = ['id',
+                            'nombre',
+                            'descripcion',
+                            'categoria_id',
+                            'stock_minimo',
+                            'stock_maximo',
+                            'porcentaje_ganancia',
+                            'stock',
+                            'precio_promedio'];
 }

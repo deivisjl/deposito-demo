@@ -48,10 +48,9 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- <li class="nav-item">
-                            <li><a class="dropdown-item" href="{{ route('categorias.index') }}">Categorías</a></li>
-                              <li><a class="dropdown-item" href="{{ route('productos.index') }}">Productos</a></li>
-                        </li> --}}
+                        <li class="nav-item">
+                            <li><a class="nav-link" href="/inventario">Inventario</a></li>
+                        </li>
                         @endguest
                     </ul>
 
