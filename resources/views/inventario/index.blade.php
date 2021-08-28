@@ -60,7 +60,7 @@
                         }
                 },"orderable":false,"searchable":false
               },
-              {'defaultContent':'<a href="" class="kardex btn btn-primary btn-sm btn-flat"  data-toggle="tooltip" data-placement="top" title="Detalle del kardex"><i class="fas fa-clipboard-list"></i> Kardex</a>', "orderable":false}
+              {'defaultContent':'<a href="" class="kardex btn btn-primary btn-sm btn-flat"  data-toggle="tooltip" data-placement="top" title="Detalle del registro"><i class="fas fa-clipboard-list"></i> Detalle</a>', "orderable":false}
           ],
           "language": language_spanish,
           "order": [[ 0, "asc" ]]
