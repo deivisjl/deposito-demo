@@ -46,8 +46,9 @@ Vue.use(VeeValidate, config);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('error-form', require('./components/shared/ErrorComponent').default);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('compra-component', require('./components/CompraComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

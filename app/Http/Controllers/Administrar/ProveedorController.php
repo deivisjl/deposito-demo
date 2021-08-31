@@ -158,4 +158,11 @@ class ProveedorController extends Controller
             return response()->json(['error' => $e->getMessage()],422);
         }
     }
+
+    public function obtenerProveedores(){
+
+        $proveedores = Proveedor::select('id',DB::raw("CONCAT_WS(' ',nombre,'-',nit) as nombre"))->get();
+
+        return response()->json(['data' => $proveedores],200);
+    }
 }

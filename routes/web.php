@@ -21,12 +21,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function() {
 
 	Route::resource('categorias','Administrar\CategoriaController');
+
     Route::resource('productos','Administrar\ProductoController');
+    Route::get('/buscar-productos-nombre/{criterio}','Administrar\ProductoController@buscarProductoNombre');
+
     Route::resource('proveedores','Administrar\ProveedorController');
+    Route::get('/obtener-proveedores','Administrar\ProveedorController@obtenerProveedores');
+
     Route::resource('comprobantes','Administrar\ComprobanteController');
+
     Route::resource('tipo-pago','Administrar\TipoPagoController');
+    Route::get('/obtener-tipo-pago','Administrar\TipoPagoController@obtenerTipoPago');
 
     Route::get('inventario','Inventario\InventarioController@index');
     Route::get('inventario-listar/{request}','Inventario\InventarioController@show');
+
+    Route::resource('compras','Compra\CompraController',['only' => ['create','index','store','show']]);
 
 });

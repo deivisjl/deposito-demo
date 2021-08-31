@@ -57,7 +57,7 @@ class InventarioController extends Controller
 
         $productos = DB::table('producto as p')
                 ->join('categoria as c','p.categoria_id','=','c.id')
-                ->select('p.id','p.nombre','c.nombre as categoria','p.stock','p.precio_promedio','p.porcentaje_ganancia')
+                ->select('p.id','p.nombre','c.nombre as categoria','p.stock', DB::raw('TRUNC((((p.precio_promedio * p.porcentaje_ganancia)/100)+ p.precio_promedio),2) as precio'))
                 ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
                 ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
                 ->skip($request['start'])

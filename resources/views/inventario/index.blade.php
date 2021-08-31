@@ -48,18 +48,8 @@
               {'data': 'nombre'},
               {'data': 'categoria'},
               {'data': 'stock',"orderable":false,"searchable":false},
-              {'data': 'precio_promedio',"render":function(data, type, row, meta){
-                        var promedio = row.precio_promedio;
-                        var porcentaje = row.porcentaje_ganancia;
-                        if(promedio > 0 && porcentaje > 0)
-                        {
-                            var precio = parseFloat((promedio * porcentaje) / 100).toFixed(2)
-                            return '<span>'+ precio +'</span>'
-                        }else{
-                            return '<span>'+ promedio +'</span>'
-                        }
-                },"orderable":false,"searchable":false
-              },
+              {'data': 'precio',"orderable":false,"searchable":false},
+
               {'defaultContent':'<a href="" class="kardex btn btn-primary btn-sm btn-flat"  data-toggle="tooltip" data-placement="top" title="Detalle del registro"><i class="fas fa-clipboard-list"></i> Detalle</a>', "orderable":false}
           ],
           "language": language_spanish,

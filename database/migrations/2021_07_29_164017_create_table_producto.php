@@ -18,7 +18,7 @@ class CreateTableProducto extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->integer('categoria_id')->unsigned();
-            $table->integer('stock')->default(0);
+            $table->integer('stock')->default(0)->unsigned();
             $table->decimal('precio_promedio')->default(0);
             $table->decimal('porcentaje_ganancia');
             $table->integer('stock_minimo');

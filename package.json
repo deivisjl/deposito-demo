@@ -28,6 +28,7 @@
         "datatables.net-bs4": "1.10.24",
         "sweetalert2": "8.17.1",
         "toastr": "2.1.4",
-        "vee-validate": "2.2.15"
+        "vee-validate": "2.2.15",
+        "vue-multiselect": "2.1.6"
     }
 }

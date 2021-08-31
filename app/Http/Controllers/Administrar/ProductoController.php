@@ -173,4 +173,14 @@ class ProductoController extends Controller
             return response()->json(['error' => $e->getMessage()],422);
         }
     }
+
+    public function buscarProductoNombre($criterio){
+
+        $productos = DB::table('producto')
+                        ->select('id','nombre','precio_promedio as precio')
+                        ->where('nombre','LIKE','%'.$criterio.'%')
+                        ->get();
+
+        return response()->json(['data' => $productos,'code' => 200]);
+    }
 }

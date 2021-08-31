@@ -15,8 +15,7 @@ class CreateInventarioTable extends Migration
     public function up()
     {
         Schema::create('inventario', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->primary('id');
+            $table->bigIncrements('id');
             $table->bigInteger('producto_id')->unsigned();
             $table->integer('cantidad_total');
             $table->decimal('precio_promedio');
@@ -27,8 +26,6 @@ class CreateInventarioTable extends Migration
             $table->foreign('tipo_operacion_id')->references('id')->on('tipo_operacion');
             $table->timestamps();
         });
-
-        DB::statement('ALTER TABLE inventario ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
