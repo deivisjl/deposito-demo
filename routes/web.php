@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('inventario','Inventario\InventarioController@index');
     Route::get('inventario-listar/{request}','Inventario\InventarioController@show');
+    Route::get('inventario-detalle/{id}','Inventario\InventarioController@detalle');
+    Route::get('inventario-detalle-producto/{request}','Inventario\InventarioController@detalleProducto');
 
     Route::resource('compras','Compra\CompraController',['only' => ['create','index','store','show']]);
 

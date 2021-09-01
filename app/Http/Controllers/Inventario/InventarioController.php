@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Inventario;
 
+use App\Producto;
 use App\Inventario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -112,5 +113,45 @@ class InventarioController extends Controller
     public function destroy(Inventario $inventario)
     {
         //
+    }
+
+    public function detalle($id){
+
+        $producto = Producto::findOrFail($id);
+
+        return view('inventario.detalle',['producto' => $producto]);
+    }
+
+    public function detalleProducto(Request $request){
+        $ordenadores = array("p.id","to.nombre");
+
+        $columna = $request['order'][0]["column"];
+
+        $registro = $request['buscar'][0]['registro'];
+
+        $historial = DB::table('producto as p')
+                    ->join('inventario as i','i.producto_id','p.id')
+                    ->join('tipo_operacion as to','i.tipo_operacion_id','to.id')
+                    ->select('i.id','to.nombre','i.precio','i.cantidad','i.precio_promedio',DB::raw("TO_CHAR(i.created_at,'dd-mm-yyyy') as fecha"))
+                    ->where('p.id',$registro)
+                    ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
+                    ->skip($request['start'])
+                    ->take($request['length'])
+                    ->get();
+
+        $count = DB::table('producto as p')
+                ->join('inventario as i','i.producto_id','p.id')
+                ->join('tipo_operacion as to','i.tipo_operacion_id','to.id')
+                ->where('p.id',$registro)
+                ->count();
+
+        $data = array(
+            'draw' => $request->draw,
+            'recordsTotal' => $count,
+            'recordsFiltered' => $count,
+            'data' => $historial,
+        );
+
+        return response()->json($data, 200);
     }
 }

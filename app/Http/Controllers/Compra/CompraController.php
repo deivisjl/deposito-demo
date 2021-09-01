@@ -100,7 +100,7 @@ class CompraController extends Controller
             $compras = DB::table('compra as c')
                     ->join('proveedor as p','c.proveedor_id','p.id')
                     ->join('tipo_pago as tp','c.tipo_pago_id','tp.id')
-                    ->select('c.id','c.monto','p.nombre as proveedor','tp.nombre as tipo_pago','c.created_at as fecha')
+                    ->select('c.id','c.monto','p.nombre as proveedor','tp.nombre as tipo_pago',DB::raw("TO_CHAR(c.created_at,'dd-mm-yyyy') as fecha"))
                     ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
                     ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
                     ->skip($request['start'])

@@ -47,10 +47,13 @@
 
           "columns":[
               {'data': 'id'},
-              {'data': 'monto'},
+              {'data': 'monto',"render":function(data, type, row, meta){
+                    return '<span>Q. '+ row.monto +'</span>'
+                }
+              },
               {'data': 'tipo_pago'},
               {'data': 'proveedor'},
-              {'data': 'fecha'},
+              {'data': 'fecha',"orderable":false},
           ],
           "language": language_spanish,
           "order": [[ 0, "asc" ]]
