@@ -52,6 +52,9 @@
                             <li><a class="nav-link" href="/compras">Compras</a></li>
                         </li>
                         <li class="nav-item">
+                            <li><a class="nav-link" href="/ventas">Ventas</a></li>
+                        </li>
+                        <li class="nav-item">
                             <li><a class="nav-link" href="/inventario">Inventario</a></li>
                         </li>
                         @endguest

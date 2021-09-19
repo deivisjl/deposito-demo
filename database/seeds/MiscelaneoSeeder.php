@@ -1,5 +1,6 @@
 <?php
 
+use App\Cliente;
 use App\Producto;
 use App\Proveedor;
 use Illuminate\Database\Seeder;
@@ -118,6 +119,13 @@ class MiscelaneoSeeder extends Seeder
             'porcentaje_ganancia' =>20,
             'stock' => 0,
             'precio_promedio' =>0
+        ]);
+
+        Cliente::create([
+            'nombres'=>'Consumidor',
+            'apellidos'=> 'Final',
+            'nit'=>'C/F',
+            'direccion'=>'Ciudad'
         ]);
     }
 }
