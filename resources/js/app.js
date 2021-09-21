@@ -49,6 +49,7 @@ Vue.use(VeeValidate, config);
 Vue.component('error-form', require('./components/shared/ErrorComponent').default);
 
 Vue.component('compra-component', require('./components/CompraComponent.vue').default);
+Vue.component('venta-component', require('./components/VentaComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

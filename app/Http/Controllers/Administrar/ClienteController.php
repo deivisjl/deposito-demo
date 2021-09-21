@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Administrar;
 
-use App\Comprobante;
+use App\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 
-class ComprobanteController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class ComprobanteController extends Controller
      */
     public function index()
     {
-        return view('administrar.comprobante.index');
+        return view('administrar.cliente.index');
     }
 
     /**
@@ -27,7 +27,7 @@ class ComprobanteController extends Controller
      */
     public function create()
     {
-        return view('administrar.comprobante.create');
+        return view('administrar.cliente.create');
     }
 
     /**
@@ -40,45 +40,47 @@ class ComprobanteController extends Controller
     {
         $rules = [
             'nombre' => 'required',
-            'serie' => 'required',
-            'cantidad_numeros' => 'required|numeric'
+            'apellido' => 'required',
+            'nit' => 'nullable|string|unique:cliente',
+            'direccion' => 'required',
         ];
 
         $this->validate($request, $rules);
 
-        $comprobante = new Comprobante();
-        $comprobante->nombre = $request->nombre;
-        $comprobante->serie = strtoupper($request->serie);
-        $comprobante->cantidad_numeros = $request->cantidad_numeros;
-        $comprobante->save();
+        $cliente = new Cliente();
+        $cliente->nombres = $request->nombre;
+        $cliente->apellidos = $request->apellido;
+        $cliente->nit = $request->nit;
+        $cliente->direccion = $request->direccion;
+        $cliente->save();
 
-        return redirect('/comprobantes')->with(['mensaje' => 'Registro exitoso']);
+        return redirect('/clientes')->with(['mensaje' => 'Registro exitoso']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comprobante  $comprobante
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
     {
-        $ordenadores = array("id","nombre","serie","cantidad_numeros");
+        $ordenadores = array("id","nombres","nit");
 
         $columna = $request['order'][0]["column"];
 
         $criterio = $request['search']['value'];
 
 
-        $comprobantes = DB::table('comprobante')
-                ->select('id','nombre','serie','cantidad_numeros')
+        $clientes = DB::table('cliente')
+                ->select('id','nombres','apellidos','nit','direccion')
                 ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
                 ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
                 ->skip($request['start'])
                 ->take($request['length'])
                 ->get();
 
-        $count = DB::table('comprobante')
+        $count = DB::table('cliente')
                 ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
                 ->count();
 
@@ -86,7 +88,7 @@ class ComprobanteController extends Controller
         'draw' => $request->draw,
         'recordsTotal' => $count,
         'recordsFiltered' => $count,
-        'data' => $comprobantes,
+        'data' => $clientes,
         );
 
         return response()->json($data, 200);
@@ -95,49 +97,51 @@ class ComprobanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comprobante  $comprobante
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comprobante $comprobante)
+    public function edit(Cliente $cliente)
     {
-        return view('administrar.comprobante.edit',['comprobante' => $comprobante]);
+        return view('administrar.cliente.edit',['cliente' => $cliente]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comprobante  $comprobante
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comprobante $comprobante)
+    public function update(Request $request, Cliente $cliente)
     {
         $rules = [
             'nombre' => 'required',
-            'serie' => 'required',
-            'cantidad_numeros' => 'required|numeric'
+            'apellido' => 'required',
+            'nit' => 'nullable|string|unique:cliente,nit,'.$cliente->id,
+            'direccion' => 'required',
         ];
 
         $this->validate($request, $rules);
 
-        $comprobante->nombre = $request->nombre;
-        $comprobante->serie = strtoupper($request->serie);
-        $comprobante->cantidad_numeros = $request->cantidad_numeros;
-        $comprobante->save();
+        $cliente->nombres = $request->nombre;
+        $cliente->apellidos = $request->apellido;
+        $cliente->nit = $request->nit;
+        $cliente->direccion = $request->direccion;
+        $cliente->save();
 
-        return redirect('/comprobantes')->with(['mensaje' => 'Actualización exitosa']);
+        return redirect('/clientes')->with(['mensaje' => 'Actualización exitosa']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comprobante  $comprobante
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comprobante $comprobante)
+    public function destroy(Cliente $cliente)
     {
         try {
-            $comprobante->delete();
+            $cliente->delete();
 
             return response()->json(['data' => 'Registro eliminado con éxito'],200);
 
@@ -154,10 +158,11 @@ class ComprobanteController extends Controller
             return response()->json(['error' => $e->getMessage()],422);
         }
     }
-    public function obtenerTipoComprobante(){
 
-        $tipoComprobante = Comprobante::select('id','nombre')->get();
+    public function obtenerClientes(){
 
-        return response()->json(['data' => $tipoComprobante],200);
+        $clientes = Cliente::select('id',DB::raw("CONCAT_WS(' ',nombres,'',apellidos,'-',nit) as nombre"))->get();
+
+        return response()->json(['data' => $clientes],200);
     }
 }

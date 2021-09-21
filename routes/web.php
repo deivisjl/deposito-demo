@@ -22,6 +22,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::resource('categorias','Administrar\CategoriaController');
 
+    Route::resource('clientes','Administrar\ClienteController');
+    Route::get('/obtener-clientes','Administrar\ClienteController@obtenerClientes');
+
     Route::resource('productos','Administrar\ProductoController');
     Route::get('/buscar-productos-nombre/{criterio}','Administrar\ProductoController@buscarProductoNombre');
 
@@ -29,6 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/obtener-proveedores','Administrar\ProveedorController@obtenerProveedores');
 
     Route::resource('comprobantes','Administrar\ComprobanteController');
+    Route::get('/obtener-tipo-comprobante','Administrar\ComprobanteController@obtenerTipoComprobante');
 
     Route::resource('tipo-pago','Administrar\TipoPagoController');
     Route::get('/obtener-tipo-pago','Administrar\TipoPagoController@obtenerTipoPago');

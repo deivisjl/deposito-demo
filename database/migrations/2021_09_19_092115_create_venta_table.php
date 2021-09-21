@@ -18,6 +18,7 @@ class CreateVentaTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('cliente_id')->unsigned();
             $table->bigInteger('tipo_pago_id')->unsigned();
+            $table->bigInteger('usuario_id')->unsigned();
             $table->bigInteger('comprobante_id')->unsigned();
             $table->string('no_factura')->unique();
             $table->bigInteger('correlativo')->unsigned();

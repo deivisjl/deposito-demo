@@ -177,7 +177,7 @@ class ProductoController extends Controller
     public function buscarProductoNombre($criterio){
 
         $productos = DB::table('producto')
-                        ->select('id','nombre','precio_promedio as precio')
+                        ->select('id','nombre',DB::raw('ROUND(((precio_promedio*porcentaje_ganancia)/100) + precio_promedio,2) as precio'))
                         ->where('nombre','LIKE','%'.$criterio.'%')
                         ->get();
 
