@@ -48,12 +48,12 @@
 
           "columns":[
               {'data': 'id'},
+              {'data': 'cliente'},
               {'data': 'no_factura'},
               {'data': 'monto',"render":function(data, type, row, meta){
                     return '<span>Q. '+ row.monto +'</span>'
                 }
               },
-              {'data': 'cliente'},
               {'data': 'tipo_pago'},
               {'data': 'fecha',"orderable":false},
           ],
