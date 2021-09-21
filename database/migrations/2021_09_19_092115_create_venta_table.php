@@ -22,7 +22,7 @@ class CreateVentaTable extends Migration
             $table->bigInteger('comprobante_id')->unsigned();
             $table->string('no_factura')->unique();
             $table->bigInteger('correlativo')->unsigned();
-            $table->date('fecha_factura')->default(Carbon::now()->format('d-m-Y'));
+            $table->date('fecha_factura')->default(Carbon::now()->format('Y-m-d'));
             $table->decimal('monto',7,2);
             $table->integer('anulada')->default(0);
             $table->foreign('cliente_id')->references('id')->on('cliente');
