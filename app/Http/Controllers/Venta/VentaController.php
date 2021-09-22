@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Venta;
 
-use App\Comprobante;
 use App\Venta;
+use App\Comprobante;
 use App\DetalleVenta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 class VentaController extends Controller
 {
@@ -40,14 +41,6 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        /* cliente: 1
-        comprobante: 1
-        fecha_factura: "2021-09-20"
-        lista: [{producto: {id: 1, nombre: "Ajonjolí", precio: "12.10"}, precio: "12.10", cantidad: "10",…},…]
-        0: {producto: {id: 1, nombre: "Ajonjolí", precio: "12.10"}, precio: "12.10", cantidad: "10",…}
-        1: {producto: {id: 4, nombre: "Maicillo", precio: "0.00"}, precio: "10.00", cantidad: "10",…}
-        tipo_pago: 1
-        total: 221 */
         try {
             $rules = [
                 'lista' => 'required',
@@ -90,6 +83,11 @@ class VentaController extends Controller
 
         } catch (\Exception $ex) {
 
+             if ($ex instanceof QueryException) {
+                $codigo = $ex->errorInfo[2];
+
+                return response()->json(['error' => $codigo],423);
+            }
             return response()->json(['error' => $ex->getMessage()],423);
         }
     }
@@ -136,7 +134,7 @@ class VentaController extends Controller
 
         } catch (\Exception $e) {
 
-            return response()->json($e->getMessage(), 423);
+            return response()->json(['error' => $e->getMessage()], 423);
         }
     }
 

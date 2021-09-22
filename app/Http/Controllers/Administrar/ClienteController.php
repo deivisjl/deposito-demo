@@ -165,4 +165,32 @@ class ClienteController extends Controller
 
         return response()->json(['data' => $clientes],200);
     }
+
+    public function guardarNuevoCliente(Request $request){
+        try {
+            $rules = [
+                'nombre' => 'required',
+                'apellido' => 'required',
+                'nit' => 'nullable|string|unique:cliente',
+                'direccion' => 'required',
+            ];
+
+            $this->validate($request, $rules);
+
+            $cliente = new Cliente();
+            $cliente->nombres = $request->nombre;
+            $cliente->apellidos = $request->apellido;
+            $cliente->nit = $request->nit;
+            $cliente->direccion = $request->direccion;
+            $cliente->save();
+
+            return response()->json(['data' => 'Registro exitoso'],200);
+
+        } catch (\Exception $ex) {
+
+            return response()->json(['error' => $ex->getMessage()],423);
+        }
+
+
+    }
 }

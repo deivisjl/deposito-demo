@@ -24,8 +24,8 @@
                         <tr>
                           <th style="width:10%; text-align: center">No.</th>
                           <th  style="text-align:center">Tipo operación</th>
-                          <th  style="text-align:center">Precio compra</th>
-                          <th style="text-align:center">Cantidad adquirida</th>
+                          <th  style="text-align:center">Precio</th>
+                          <th style="text-align:center">Cantidad</th>
                           <th  style="text-align:center">Precio promedio</th>
                           <th  style="text-align:center">Fecha de registro</th>
                         </tr>

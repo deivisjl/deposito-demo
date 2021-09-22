@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('clientes','Administrar\ClienteController');
     Route::get('/obtener-clientes','Administrar\ClienteController@obtenerClientes');
+    Route::post('/guardar-nuevo-cliente','Administrar\ClienteController@guardarNuevoCliente');
 
     Route::resource('productos','Administrar\ProductoController');
     Route::get('/buscar-productos-nombre/{criterio}','Administrar\ProductoController@buscarProductoNombre');

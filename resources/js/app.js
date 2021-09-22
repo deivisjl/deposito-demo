@@ -16,6 +16,8 @@ window.Toastr = require('toastr');
 
 require('./utils');
 
+window.events = new Vue();
+
 window.abs_path = '';
 
 /* VeeValidate */
@@ -50,6 +52,7 @@ Vue.component('error-form', require('./components/shared/ErrorComponent').defaul
 
 Vue.component('compra-component', require('./components/CompraComponent.vue').default);
 Vue.component('venta-component', require('./components/VentaComponent.vue').default);
+Vue.component('cliente-component', require('./components/ClienteComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

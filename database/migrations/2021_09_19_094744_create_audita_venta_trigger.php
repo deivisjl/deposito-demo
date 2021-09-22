@@ -22,7 +22,6 @@ class CreateAuditaVentaTrigger extends Migration
                     tmp_cantidad integer:=0;
                     tmp_precio numeric(8,2):=0;
                     promedio numeric(8,2):=0;
-                    custom_error varchar(50):="El stock es menor a la venta";
                     BEGIN
                         SELECT cantidad_total, precio_promedio INTO tmp_cantidad, tmp_precio FROM inventario where id = (SELECT MAX(id) from inventario WHERE producto_id = NEW.producto_id);
 
@@ -33,6 +32,8 @@ class CreateAuditaVentaTrigger extends Migration
                                 VALUES (NEW.producto_id, (tmp_cantidad - NEW.cantidad), promedio, tipo_operacion, NEW.cantidad, NEW.precio_unitario, now(), null);
 
                                 UPDATE producto SET precio_promedio = promedio,  stock = (tmp_cantidad - NEW.cantidad) WHERE id = NEW.producto_id;
+                            ELSE
+                                raise exception \'El stock es menor a la venta\';
                             END IF;
                         RETURN NEW;
                     END;
