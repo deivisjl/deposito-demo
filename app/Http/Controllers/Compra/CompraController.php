@@ -163,4 +163,11 @@ class CompraController extends Controller
     {
         //
     }
+
+    public function detalle($id)
+    {
+        $compra = Compra::with('detalle_compra')->where('id',$id)->first();
+
+        return view('compras.detalle',['compra' => $compra]);
+    }
 }

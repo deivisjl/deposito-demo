@@ -21,6 +21,7 @@
                           <th>Monto</th>
                           <th>Tipo pago</th>
                           <th>Fecha</th>
+                          <th>Acción</th>
                         </tr>
                       </thead>
                   </table>
@@ -56,6 +57,7 @@
               },
               {'data': 'tipo_pago'},
               {'data': 'fecha',"orderable":false},
+              {'defaultContent':'<a href="" class="detalle btn btn-primary btn-sm btn-flat"  data-toggle="tooltip" data-placement="top" title="Detalle del registro"><i class="fas fa-clipboard-list"></i> Detalle</a>', "orderable":false}
           ],
           "language": language_spanish,
           "order": [[ 0, "desc" ]]
@@ -63,47 +65,13 @@
         obtener_data_editar("#listar tbody",table);
     }
     var obtener_data_editar = function(tbody,table){
-         $(tbody).on("click","a.editar",function(e){
+         $(tbody).on("click","a.detalle",function(e){
              e.preventDefault();
 
              var data = table.fnGetData($(this).parents("tr"));
 
             var id = data.id;
-             window.location.href = "/ventas/" + id + "/edit";
-          });
-         $(tbody).on("click","a.borrar",function(e){
-             e.preventDefault();
-             var data = table.fnGetData($(this).parents("tr"));
-
-            var id = data.id;
-             Swal.fire({
-                  title: '¿Está seguro de eliminar este registro?',
-                  //text: 'Confirmar',
-                  type: 'question',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Aceptar',
-                  cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                   if (result.value) {
-                      axios.delete('/ventas/'+id)
-                          .then(response => {
-                              Toastr.success(response.data.data,'Mensaje')
-                              table._fnAjaxUpdate() //actualizar datatable
-
-                          })
-                          .catch(error => {
-                              if (error.response) {
-                                  Toastr.error(error.response.data.error,'');
-                              }else{
-                                  Toastr.error('Ocurrió un error: ' + error,'Error');
-                              }
-                          });
-                   }
-
-                });
-
+            window.location.href = "/ventas/" + id + "/detalle";
           });
       }
 </script>

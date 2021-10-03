@@ -20,6 +20,7 @@
                           <th>Tipo pago</th>
                           <th>Proveedor</th>
                           <th>Fecha</th>
+                          <th>Acción</th>
                         </tr>
                       </thead>
                   </table>
@@ -54,6 +55,7 @@
               {'data': 'tipo_pago'},
               {'data': 'proveedor'},
               {'data': 'fecha',"orderable":false},
+              {'defaultContent':'<a href="" class="detalle btn btn-primary btn-sm btn-flat"  data-toggle="tooltip" data-placement="top" title="Detalle del registro"><i class="fas fa-clipboard-list"></i> Detalle</a>', "orderable":false}
           ],
           "language": language_spanish,
           "order": [[ 0, "asc" ]]
@@ -61,14 +63,15 @@
         obtener_data_editar("#listar tbody",table);
     }
     var obtener_data_editar = function(tbody,table){
-         $(tbody).on("click","a.editar",function(e){
+         $(tbody).on("click","a.detalle",function(e){
              e.preventDefault();
 
              var data = table.fnGetData($(this).parents("tr"));
 
             var id = data.id;
-             window.location.href = "/compras/" + id + "/edit";
+             window.location.href = "/compras/" + id + "/detalle";
           });
+
          $(tbody).on("click","a.borrar",function(e){
              e.preventDefault();
              var data = table.fnGetData($(this).parents("tr"));

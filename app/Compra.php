@@ -18,4 +18,14 @@ class Compra extends Model
         'usuario_id',
         'fecha_comprobante'
     ];
+
+    public function detalle_compra()
+    {
+        return $this->hasMany(DetalleCompra::class);
+    }
+
+    public function tipo_pago()
+    {
+        return $this->belongsTo(TipoPago::class);
+    }
 }

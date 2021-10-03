@@ -15,4 +15,9 @@ class DetalleCompra extends Model
         'cantidad',
         'precio_unitario',
     ];
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
 }

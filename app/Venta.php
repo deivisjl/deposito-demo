@@ -11,4 +11,19 @@ class Venta extends Model
     protected $fillable = [
         'id','cliente_id','usuario_id','tipo_pago_id','comprobante_id','no_factura','correlativo','fecha_factura','monto','anulada',
     ];
+
+    public function detalle_venta()
+    {
+        return $this->hasMany(DetalleVenta::class);
+    }
+
+    public function tipo_pago()
+    {
+        return $this->belongsTo(TipoPago::class);
+    }
+
+    public function comprobante()
+    {
+        return $this->belongsTo(Comprobante::class);
+    }
 }

@@ -110,7 +110,7 @@ class VentaController extends Controller
             $ventas = DB::table('venta as v')
                     ->join('cliente as c','c.id','v.cliente_id')
                     ->join('tipo_pago as tp','v.tipo_pago_id','tp.id')
-                    ->select('v.id','v.no_factura','v.monto',DB::raw("CONCAT_WS('',c.nombres,'',c.apellidos) as cliente"),'tp.nombre as tipo_pago',DB::raw("TO_CHAR(v.fecha_factura,'dd-mm-yyyy') as fecha"))
+                    ->select('v.id','v.no_factura','v.monto',DB::raw("CONCAT_WS('',c.nombres,' ',c.apellidos) as cliente"),'tp.nombre as tipo_pago',DB::raw("TO_CHAR(v.fecha_factura,'dd-mm-yyyy') as fecha"))
                     ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
                     ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
                     ->skip($request['start'])
@@ -170,6 +170,12 @@ class VentaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function detalle($id)
+    {
+        $venta = Venta::with('detalle_venta')->where('id',$id)->first();
+
+        return view('ventas.detalle',['venta' => $venta]);
     }
 
     public function obtenerNumeroComprobante($comprobanteId)

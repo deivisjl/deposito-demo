@@ -13,7 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 
-
 Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -53,6 +52,8 @@ Route::group(['middleware' => ['auth','digitador']], function() {
     Route::get('inventario-detalle-producto/{request}','Inventario\InventarioController@detalleProducto');
 
     Route::resource('compras','Compra\CompraController',['only' => ['create','index','store','show']]);
+    Route::get('compras/{id}/detalle','Compra\CompraController@detalle');
 
     Route::resource('ventas','Venta\VentaController',['only' => ['create','index','store','show']]);
+    Route::get('ventas/{id}/detalle','Venta\VentaController@detalle');
 });
