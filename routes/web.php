@@ -18,7 +18,16 @@ Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth','admin']], function() {
+
+    Route::resource('usuarios','Administrar\UsuarioController');
+
+});
+
+Route::group(['middleware' => ['auth','digitador']], function() {
+
+    Route::get('mi-acceso','Administrar\UsuarioController@miAcceso');
+    Route::post('mi-acceso-actualizar','Administrar\UsuarioController@miAccesoActualizar');
 
 	Route::resource('categorias','Administrar\CategoriaController');
 
@@ -46,5 +55,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('compras','Compra\CompraController',['only' => ['create','index','store','show']]);
 
     Route::resource('ventas','Venta\VentaController',['only' => ['create','index','store','show']]);
-
 });

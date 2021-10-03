@@ -1,5 +1,6 @@
 <?php
 
+use App\Rol;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,9 @@ class UsuarioSeeder extends Seeder
      */
     public function run()
     {
+        $rol1 = Rol::create(['nombre'=>'Administrador']);
+        $rol2 = Rol::create(['nombre'=>'Digitador']);
+
         User::create([
             'nombres' => 'Hely',
             'apellidos' => 'Solares',
@@ -20,6 +24,7 @@ class UsuarioSeeder extends Seeder
             'direccion' => 'Chiquimulilla',
             'email' => 'hely@gmail.com',
             'password' => bcrypt('12345'),
+            'rol_id'=> $rol1->id,
         ]);
     }
 }

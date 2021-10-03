@@ -32,6 +32,7 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
+                        @if(Auth::user()->esDigitador() || Auth::user()->esAdministrador())
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Administrar <span class="caret"></span>
@@ -46,9 +47,15 @@
                                     <li><a class="dropdown-item" href="{{ route('clientes.index') }}">Clientes</a></li>
                                     <li><a class="dropdown-item" href="{{ route('comprobantes.index') }}">Comprobantes</a></li>
                                     <li><a class="dropdown-item" href="{{ route('tipo-pago.index') }}">Tipos de pagos</a></li>
+                                    @if(Auth::user()->esAdministrador())
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
+                                    @endif
                                 </li>
                             </ul>
                         </li>
+                        @endif
+                        @if(Auth::user()->esDigitador() || Auth::user()->esAdministrador())
                         <li class="nav-item">
                             <li><a class="nav-link" href="/compras">Compras</a></li>
                         </li>
@@ -58,6 +65,7 @@
                         <li class="nav-item">
                             <li><a class="nav-link" href="/inventario">Inventario</a></li>
                         </li>
+                        @endif
                         @endguest
                     </ul>
 
@@ -80,6 +88,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/mi-acceso">
+                                        Cambiar mi contraseña
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

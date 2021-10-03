@@ -1,5 +1,6 @@
 <?php
 
+use App\Rol;
 use App\Cliente;
 use App\Producto;
 use App\Proveedor;
