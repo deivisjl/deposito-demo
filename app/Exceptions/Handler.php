@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -51,6 +52,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof HttpException)
+        {
+            if($exception->getStatusCode() == 404)
+            {
+                return response()->view('errors.404');
+            }
+        }
+
         if($exception instanceof TokenMismatchException)
         {
             if($this->isFrontend($request))
