@@ -25,10 +25,13 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.15.3",
+        "apexcharts": "3.22.0",
         "datatables.net-bs4": "1.10.24",
+        "moment": "^2.29.1",
         "sweetalert2": "8.17.1",
         "toastr": "2.1.4",
         "vee-validate": "2.2.15",
+        "vue-apexcharts": "1.6.0",
         "vue-multiselect": "2.1.6"
     }
 }

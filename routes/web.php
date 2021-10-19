@@ -21,6 +21,11 @@ Route::group(['middleware' => ['auth','admin']], function() {
 
     Route::resource('usuarios','Administrar\UsuarioController');
 
+    Route::get('reporte-grafico','Reportes\ReporteGraficoController@index');
+    Route::post('compras-por-categoria','Reportes\ReporteGraficoController@ComprasPorCategoria');
+    Route::post('categorias-mas-vendidas','Reportes\ReporteGraficoController@GraficoVentaCategoria');
+    Route::post('existencias-en-inventario','Reportes\ReporteGraficoController@ExistenciaEnInventario');
+    Route::post('ventas-por-mes','Reportes\ReporteGraficoController@VentaPorMes');
 });
 
 Route::group(['middleware' => ['auth','digitador']], function() {

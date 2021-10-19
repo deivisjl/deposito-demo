@@ -65,6 +65,19 @@
                         <li class="nav-item">
                             <li><a class="nav-link" href="/inventario">Inventario</a></li>
                         </li>
+                        @if(Auth::user()->esAdministrador())
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Reportes <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <li><a class="dropdown-item" href="/reporte-grafico">Gráfico</a></li>
+                                    <li><a class="dropdown-item" href="">Documentos</a></li>
+                                </li>
+                            </ul>
+                        </li>
+                        @endif
                         @endif
                         @endguest
                     </ul>
