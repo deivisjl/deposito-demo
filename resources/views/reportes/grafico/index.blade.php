@@ -40,7 +40,7 @@
                         <div class="col-md-6">
                             <div class="card shadow-md">
                                 <div class="card-header text-center">
-                                    <h5 style="text-align: center!important;font-size: 1.1rem;font-weight: 400;margin: 0;">Ventas por mes</h5>
+                                    <h5 style="text-align: center!important;font-size: 1.1rem;font-weight: 400;margin: 0;">Inventario de productos</h5>
                                 </div>
                                 <div class="card-body">
                                     <grafico-existencia-inventario></grafico-existencia-inventario>
@@ -50,7 +50,7 @@
                         <div class="col-md-6">
                             <div class="card shadow-md">
                                 <div class="card-header">
-                                    <h5 style="text-align: center!important;font-size: 1.1rem;font-weight: 400;margin: 0;">Ventas de producto</h5>
+                                    <h5 style="text-align: center!important;font-size: 1.1rem;font-weight: 400;margin: 0;">Ventas por mes</h5>
                                 </div>
                                 <div class="card-body">
                                     <grafico-venta-mes></grafico-venta-mes>

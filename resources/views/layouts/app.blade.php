@@ -73,7 +73,7 @@
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
                                     <li><a class="dropdown-item" href="/reporte-grafico">Gráfico</a></li>
-                                    <li><a class="dropdown-item" href="">Documentos</a></li>
+                                    <li><a class="dropdown-item" href="/reporte-documento">Documentos</a></li>
                                 </li>
                             </ul>
                         </li>

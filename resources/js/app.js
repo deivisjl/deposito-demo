@@ -59,6 +59,11 @@ Vue.component('grafico-venta-categoria', require('./components/reporte-grafico/G
 Vue.component('grafico-existencia-inventario', require('./components/reporte-grafico/GraficoExistenciaInventario').default);
 Vue.component('grafico-venta-mes', require('./components/reporte-grafico/GraficoVentaMes').default);
 
+Vue.component('documento-compra', require('./components/reporte-documento/ReporteCompra').default);
+Vue.component('documento-venta', require('./components/reporte-documento/ReporteVenta').default);
+Vue.component('documento-inventario', require('./components/reporte-documento/ReporteInventario').default);
+Vue.component('documento-venta-mes', require('./components/reporte-documento/ReporteVentaMes').default);
+
 import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueApexCharts)
 

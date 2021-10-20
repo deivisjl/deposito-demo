@@ -26,6 +26,12 @@ Route::group(['middleware' => ['auth','admin']], function() {
     Route::post('categorias-mas-vendidas','Reportes\ReporteGraficoController@GraficoVentaCategoria');
     Route::post('existencias-en-inventario','Reportes\ReporteGraficoController@ExistenciaEnInventario');
     Route::post('ventas-por-mes','Reportes\ReporteGraficoController@VentaPorMes');
+
+    Route::get('reporte-documento','Reportes\ReporteDocumentoController@index');
+    Route::post('reporte-documento-compra','Reportes\ReporteDocumentoController@ReporteDocumentoCompra');
+    Route::post('reporte-documento-venta','Reportes\ReporteDocumentoController@ReporteDocumentoVenta');
+    Route::post('reporte-documento-inventario','Reportes\ReporteDocumentoController@ReporteDocumentoInventario');
+    Route::post('reporte-documento-venta-mes','Reportes\ReporteDocumentoController@ReporteDocumentoVentaMes');
 });
 
 Route::group(['middleware' => ['auth','digitador']], function() {
