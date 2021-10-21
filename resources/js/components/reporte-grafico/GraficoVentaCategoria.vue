@@ -52,19 +52,12 @@ export default {
         computed:{
             chartOptions(){
                 let option = {}
-                 option = {
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                            }
-                        },
-                        dataLabels: {
-                            enabled: false
-                        },
-                        xaxis: {
-                            categories: this.etiquetas
-                        }
-                    }
+                option = {
+                    labels:this.etiquetas,
+                    legend: {
+                        show: false
+                    },
+                }
                 return option
             }
         },
@@ -84,7 +77,7 @@ export default {
 
                 axios.post('categorias-mas-vendidas', datos)
                     .then((r) =>{
-                        this.chartSeries = [{data: r.data.data.series}]
+                        this.chartSeries = r.data.data.series
                         this.etiquetas = r.data.data.etiquetas
                     })
                     .catch((error) => {

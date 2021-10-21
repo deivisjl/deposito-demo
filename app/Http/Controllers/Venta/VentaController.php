@@ -104,8 +104,6 @@ class VentaController extends Controller
 
             $venta = Venta::with('detalle_venta','cliente','comprobante','tipo_pago')->where('id',$request->venta)->first();
 
-            //return response()->json(['data' => $venta],200);
-            //return view('comprobante-venta',['venta' => $venta]);
             $reporte = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('comprobante-venta',['venta' => $venta])->setPaper('letter','portrait');
 
             return $reporte->download('reporte_.pdf');
