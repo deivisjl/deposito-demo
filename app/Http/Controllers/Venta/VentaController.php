@@ -77,7 +77,7 @@ class VentaController extends Controller
                     $detalle->save();
                 }
 
-                return response()->json(['data' => 'Venta registrada con éxito']);
+                return response()->json(['data' => 'Venta registrada con éxito','venta' => $venta->id]);
 
             });
 
@@ -88,6 +88,30 @@ class VentaController extends Controller
 
                 return response()->json(['error' => $codigo],423);
             }
+            return response()->json(['error' => $ex->getMessage()],423);
+        }
+    }
+
+    public function DescargarComprobanteVenta(Request $request)
+    {
+        try
+        {
+            $rules = [
+                'venta' => 'required|numeric|min:1'
+            ];
+
+            $this->validate($request, $rules);
+
+            $venta = Venta::with('detalle_venta','cliente','comprobante','tipo_pago')->where('id',$request->venta)->first();
+
+            //return response()->json(['data' => $venta],200);
+            //return view('comprobante-venta',['venta' => $venta]);
+            $reporte = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('comprobante-venta',['venta' => $venta])->setPaper('letter','portrait');
+
+            return $reporte->download('reporte_.pdf');
+        }
+        catch (\Exception $ex)
+        {
             return response()->json(['error' => $ex->getMessage()],423);
         }
     }

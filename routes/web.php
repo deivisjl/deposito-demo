@@ -67,4 +67,6 @@ Route::group(['middleware' => ['auth','digitador']], function() {
 
     Route::resource('ventas','Venta\VentaController',['only' => ['create','index','store','show']]);
     Route::get('ventas/{id}/detalle','Venta\VentaController@detalle');
+    Route::post('descargar-comprobante-venta','Venta\VentaController@DescargarComprobanteVenta');
+    //Route::get('descargar-comprobante-venta/{id}','Venta\VentaController@DescargarComprobanteVenta');
 });
