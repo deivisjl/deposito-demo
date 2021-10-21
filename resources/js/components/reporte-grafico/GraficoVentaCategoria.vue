@@ -17,7 +17,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>&nbsp;</label>
-                    <button class="btn btn-primary btn-block" @click.prevent="mostrar()">Mostrar</button>
+                    <button class="btn btn-primary btn-block btn-flat" @click.prevent="mostrar()">Mostrar</button>
                 </div>
             </div>
         </div>
